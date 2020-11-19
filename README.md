@@ -1,3 +1,6 @@
+# About
+This is a sample project created following Robin Wieruch's "The Road to React"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
