@@ -16,12 +16,15 @@ const list = [
     objectID: 1,
   },
 ];
-function App() {
+const App = () => {
+  const handleChange =  event => {
+    console.log(event);
+  }
   return (
     <div>
       <h1>Hello React</h1>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
+      <input id="search" type="text" onChange={handleChange}/>
       <hr />
       <List/>
       <List/>
