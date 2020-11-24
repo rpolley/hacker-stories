@@ -26,4 +26,4 @@ package-lock.json
 yarn.lock
 
 # vim temp files
-*/*.swap
+**/*.swp
