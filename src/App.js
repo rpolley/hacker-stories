@@ -51,7 +51,7 @@ const storiesReducer = (state, action) => {
         ...state,
         isLoading: false,
         isError: true,
-        data: action.payload,
+        data: action.payload || [],
       }
     case 'REMOVE_STORY':
       return {
@@ -83,25 +83,22 @@ const App = () => {
     { data: [], isLoading: false, isError: false }
   );
 
-  const handleFetchStories = React.useCallback(() => {
+  const handleFetchStories = React.useCallback(async () => {
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
-    axios
-    .get(url)
-    .then(result => {
+    try {
+      const result = await axios.get(url)
       dispatchStories({
         type: 'STORIES_FETCH_SUCCESS',
         payload: result.data.hits,
       });
-    })
-    .catch((err) => {
-      console.log(`error occured while fetching ${url}`);
-      console.error(err);
-      dispatchStories({
-        type: 'STORIES_FETCH_FAILURE',
-        payload: [],
-      })
-    });
+    } catch (err) {
+      console.log(`an error occured while fetching from ${url}`)
+      console.error(err)
+      dispatchStories({ type: 'STORIES_FETCH_FAILURE'})
+    }
+
+    
   }, [url]);
 
   React.useEffect(() => {
